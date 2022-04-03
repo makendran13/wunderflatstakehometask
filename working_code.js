@@ -31,7 +31,7 @@ async function asyncall()
         const rop = await (accountResponse); 
         // Assumption: Each account has only one deal. But each deal can have several tasks.    
         // A task on the deal will be created, because we already have an account with the ID from the webhook (according to my assumption). 
-        // But need to check if the task will be created on the account level or deal level.  
+        //The task will be created on the deal level.  
         const ascDeal = dealLink + userid + '?include=deals';
         const getDeal = axios.get(ascDeal);
         const dop = await(getDeal);
@@ -64,7 +64,7 @@ async function asyncall()
         var agencyFee = 249;
         const obj = {
             "name": inpData.user_name + ' ' + dealDate,
-            "amount": inpData.budget - agencyFee, // I don't how the amount is calculated. So I assumed that we reduce the agency fee from the overall budget.
+            "amount": agencyFee, // I don't how the amount is calculated. So I assumed that we have a fee each deal.
             "sales_account": {"name":inpData.user_name},
             "custom_field":{
                 "cf_job_title": inpData.job_title,
